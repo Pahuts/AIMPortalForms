@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // jquery css for new fields
-        // added new fields jan 19 2021
+    // added new fields jan 19 2021
     $("#ndph_statetextonly").parent().parent().attr("colspan","2");
     $("#ndph_statetextonly").parent().css("width","100%");
     $("#ndph_citytextonly").parent().parent().attr("colspan","2");

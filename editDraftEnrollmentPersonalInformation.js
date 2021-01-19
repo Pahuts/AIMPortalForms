@@ -1,5 +1,41 @@
 $(document).ready(function() {
+
+    // Resize State/City fields
+    $("#ndph_country").parent().parent().parent().attr("colspan","3");          // Home Address
+    $("#ndph_country").parent().css("width","100%");
+    $("#ndph_state").parent().parent().parent().attr("colspan","3");
+    $("#ndph_state").parent().css("width","100%");
+    $("#address1_stateorprovince").parent().parent().attr("colspan","3");
+    $("#ndph_city").parent().parent().parent().attr("colspan","3");
+    $("#ndph_city").parent().css("width","100%");
+    $("#address1_city").parent().parent().attr("colspan","3");
     
+    $("#ndph_mequestion11").parent().parent().parent().attr("colspan","3");     // Business Address
+    $("#ndph_mequestion11").parent().css("width","100%");
+    $("#ndph_mequestion12").parent().parent().parent().attr("colspan","3");
+    $("#ndph_mequestion12").parent().css("width","100%");
+    $("#ndph_statebusinessothers").parent().parent().attr("colspan","3");
+    $("#ndph_mequestion13").parent().parent().parent().attr("colspan","3");
+    $("#ndph_mequestion13").parent().css("width","100%");
+    $("#ndph_citybusinessothers").parent().parent().attr("colspan","3");    
+
+    // jquery css for new fields
+    // added new fields jan 19 2021
+    $("#ndph_statetextonly").parent().parent().attr("colspan","3");
+    $("#ndph_statetextonly").parent().css("width","100%");
+    $("#ndph_citytextonly").parent().parent().attr("colspan","3");
+    $("#ndph_citytextonly").parent().css("width","100%");
+    $("#ndph_statebusinesstextonly").parent().parent().attr("colspan","3");
+    $("#ndph_statebusinesstextonly").parent().css("width","100%");
+    $("#ndph_citybusinesstextonly").parent().parent().attr("colspan","3");
+    $("#ndph_citybusinesstextonly").parent().css("width","100%");
+    // end of new fields
+    $("#address1_postalcode").parent().parent().attr("colspan","3");
+    $("#address1_postalcode").parent().css("width","100%");
+    $("#ndph_mequestion14").parent().parent().attr("colspan","3");
+    $("#ndph_mequestion14").parent().css("width","100%");    
+    // Hide school
+    $("#ndph_school").parent().parent().parent().hide();
     // Insert educational background edit instruction
     $('<div>')
     .addClass('educationalBgInstruction')
@@ -321,6 +357,16 @@ $(document).ready(function() {
     toggleIndustryOther();
     jobFunction();
 
+    // Hide and show industry other
+    function showAndHideIndustryOther()
+    {
+        if($("#ndph_industry").val() == "20438f98-603f-ea11-a813-000d3a851ff7"){
+            $("#ndph_industryname1").parent().parent().show();
+        } else {
+            $("#ndph_industryname1").parent().parent().hide();
+        }
+    }
+    
 
     // Initiate functions on field change
     $("#ndph_jobfunction").change(jobFunction);
@@ -353,7 +399,47 @@ $(document).ready(function() {
     
     // Validator definition
     if (typeof (Page_Validators) == 'undefined') return;
-    
+    // Date of birth validator: disallow future date
+    var dateOfBirthValidator = document.createElement('span');
+    dateOfBirthValidator.style.display = "none";
+    dateOfBirthValidator.id = "ndph_dateofbirthValidator";
+    dateOfBirthValidator.controltovalidate = "ndph_dateofbirth";
+    dateOfBirthValidator.errormessage = "<a href='#ndph_dateofbirth_datepicker_description'>Date of Birth cannot be set to a future date.</a>";
+    dateOfBirthValidator.validationGroup = "";        // Set this if you have set ValidationGroup on the form
+    dateOfBirthValidator.initialvalue = "";
+    dateOfBirthValidator.evaluationfunction = function () {
+        var currentDate = new Date();
+        var dateOfBirth = $("#ndph_dateofbirth").val();
+        if (dateOfBirth) {
+            dateOfBirth = new Date(dateOfBirth);      // Convert to Date object if filled in
+        }
+        if ((dateOfBirth == "") || (dateOfBirth < currentDate)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+    // Program validator: check if either a degree program or an open program is selected
+    var programValidator = document.createElement('span');
+    programValidator.style.display = "none";
+    programValidator.id = "ndph_programValidator";
+    programValidator.controltovalidate = "ndph_program";
+    programValidator.errormessage = "Please select a program to apply for.";
+    programValidator.validationGroup = "";        // Set this if you have set ValidationGroup on the form
+    programValidator.initialvalue = "";
+    programValidator.evaluationfunction = function () {
+        var degreeProgram = $("#ndph_program");
+        var openProgram = $("#ndph_seellopenprograms");
+        
+        if (degreeProgram.val() || openProgram.val()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
     // Company name validator: 
     var companyNameValidator = document.createElement('span');
     companyNameValidator.style.display = "none";
