@@ -4,6 +4,22 @@ $(document).ready(function() {
     // FUNCTION DECLARATIONS
     // ################################################################
 
+    // jquery css for new fields
+    // added new fields jan 19 2021
+    $("#ndph_statetextonly").parent().parent().attr("colspan","2");
+    $("#ndph_statetextonly").parent().css("width","100%");
+    $("#ndph_citytextonly").parent().parent().attr("colspan","2");
+    $("#ndph_citytextonly").parent().css("width","100%");
+    $("#ndph_statebusinesstextonly").parent().parent().attr("colspan","2");
+    $("#ndph_statebusinesstextonly").parent().css("width","100%");
+    $("#ndph_citybusinesstextonly").parent().parent().attr("colspan","2");
+    $("#ndph_citybusinesstextonly").parent().css("width","100%");
+    // end of new fields
+    $("#address1_postalcode").parent().parent().attr("colspan","2");
+    $("#address1_postalcode").parent().css("width","100%");
+    $("#ndph_mequestion14").parent().parent().attr("colspan","2");
+    $("#ndph_mequestion14").parent().css("width","100%");
+
     // Update School based on Program; execute only after OData query returns "programs" variable
     function updateSchool() {
         var school = $("#ndph_school");
@@ -1120,6 +1136,8 @@ $(document).ready(function() {
     $("#ndph_city").parent().parent().parent().attr("colspan","2");
     $("#ndph_city").parent().css("width","100%");
     $("#address1_city").parent().parent().attr("colspan","2");
+    // new fields for home address
+
     
     $("#ndph_mequestion11").parent().parent().parent().attr("colspan","2");     // Business Address
     $("#ndph_mequestion11").parent().css("width","100%");

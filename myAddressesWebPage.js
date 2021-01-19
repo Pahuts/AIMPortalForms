@@ -1,5 +1,5 @@
 $(document).ready(function() {
-        
+
     function toggleBusinessIsHomeAddress() {
         var businessIsHome = $("#ndph_businessaddressishomeaddress").prop("checked");
    
@@ -53,6 +53,12 @@ else {
         $(".section[data-name='BS']").closest("fieldset").show();
 
         // Clear change event handler for Business Address
+        // added new address fields january 19 2021
+        $("#ndph_statetextonly").off("change", mirrorHomeAddress);
+        $("#ndph_citytextonly").off("change", mirrorHomeAddress);
+        $("#ndph_statebusinesstextonly").off("change", mirrorHomeAddress);
+        $("#ndph_citybusinesstextonly").off("change", mirrorHomeAddress);
+        // end of additional fields
         $("#address1_line1").off("change", mirrorHomeAddress);
         $("#address1_line2").off("change", mirrorHomeAddress);
         $("#address1_line3").off("change", mirrorHomeAddress);
@@ -67,6 +73,10 @@ else {
         $("#ndph_citynotshownonthelist").off("change", mirrorHomeAddress);
 
         // Clear values for Business Address
+        // added new address fields january 19 2021
+        $("#ndph_statebusinesstextonly").val("");                           // State text only
+        $("#ndph_citybusinesstextonly").val("");                            // City text only
+        // end of additional fields
         $("#ndph_street1business").val("");                                 // Street 1
         $("#ndph_street2business").val("");                                 // Street 2
         $("#ndph_street3business").val("");                                 // Street 3
@@ -95,6 +105,10 @@ else {
 }
 
 function mirrorHomeAddress() { // Function to copy Home Address fields to Business Address
+    // additional fields jan 19 2021
+    var stateTextOnly = $("#ndph_statetextonly").val();
+    var cityTextOnly = $("#ndph_citytextonly").val();
+    // end of additional fields
     var homeStreet1 = $("#address1_line1").val();
     var homeStreet2 = $("#address1_line2").val();
     var homeStreet3 = $("#address1_line3").val();
@@ -109,6 +123,12 @@ function mirrorHomeAddress() { // Function to copy Home Address fields to Busine
     var homeCityName = $("#ndph_city_name").val();
     var homeCityOthers = $("#address1_city").val();
     var homeCityNotOnList = $("#ndph_citynotshownonthelist").prop("checked");
+
+
+        // additional fields jan 19 2021
+        $("#ndph_statebusinesstextonly").val(stateTextOnly);
+        $("#ndph_citybusinesstextonly").val(cityTextOnly);
+        // end of additional fields
 
         $("#ndph_street1business").val(homeStreet1);                                            // Street 1
         $("#ndph_street2business").val(homeStreet2);                                            // Street 2
@@ -750,23 +770,38 @@ function mirrorHomeAddress() { // Function to copy Home Address fields to Busine
     // $(".section[data-name='hidden_anonymous']").closest("fieldset").hide();
 
     //Resize State/City fields
+    // added new fields jan 19 2021
+    $("#ndph_statetextonly").parent().parent().attr("colspan","2");
+    $("#ndph_statetextonly").parent().css("width","100%");
+    $("#ndph_citytextonly").parent().parent().attr("colspan","2");
+    $("#ndph_citytextonly").parent().css("width","100%");
+    $("#ndph_statebusinesstextonly").parent().parent().attr("colspan","2");
+    $("#ndph_statebusinesstextonly").parent().css("width","100%");
+    $("#ndph_citybusinesstextonly").parent().parent().attr("colspan","2");
+    $("#ndph_citybusinesstextonly").parent().css("width","100%");
+    // end of new fields
+    $("#address1_postalcode").parent().parent().attr("colspan","2");
+    $("#address1_postalcode").parent().css("width","100%");
+    $("#ndph_zippostalcodebusiness").parent().parent().attr("colspan","2");
+    $("#ndph_zippostalcodebusiness").parent().css("width","100%");
+
     $("#ndph_country").parent().parent().parent().attr("colspan","2");
     $("#ndph_country").parent().css("width","100%");
-    $("#ndph_state").parent().parent().parent().attr("colspan","2");
-    $("#ndph_state").parent().css("width","100%");
-    $("#address1_stateorprovince").parent().parent().attr("colspan","2");
-    $("#ndph_city").parent().parent().parent().attr("colspan","2");
-    $("#ndph_city").parent().css("width","100%");
-    $("#address1_city").parent().parent().attr("colspan","2");
+    // $("#ndph_state").parent().parent().parent().attr("colspan","2");
+    // $("#ndph_state").parent().css("width","100%");
+    // $("#address1_stateorprovince").parent().parent().attr("colspan","2");
+    // $("#ndph_city").parent().parent().parent().attr("colspan","2");
+    // $("#ndph_city").parent().css("width","100%");
+    // $("#address1_city").parent().parent().attr("colspan","2");
     
     $("#ndph_countrybusiness").parent().parent().parent().attr("colspan","2");
     $("#ndph_countrybusiness").parent().css("width","100%");
-    $("#ndph_statebusiness").parent().parent().parent().attr("colspan","2");
-    $("#ndph_statebusiness").parent().css("width","100%");
-    $("#ndph_statebusinessother").parent().parent().attr("colspan","2");
-    $("#ndph_citybusiness").parent().parent().parent().attr("colspan","2");
-    $("#ndph_citybusiness").parent().css("width","100%");
-    $("#ndph_citybusinessother").parent().parent().attr("colspan","2");
+    // $("#ndph_statebusiness").parent().parent().parent().attr("colspan","2");
+    // $("#ndph_statebusiness").parent().css("width","100%");
+    // $("#ndph_statebusinessother").parent().parent().attr("colspan","2");
+    // $("#ndph_citybusiness").parent().parent().parent().attr("colspan","2");
+    // $("#ndph_citybusiness").parent().css("width","100%");
+    // $("#ndph_citybusinessother").parent().parent().attr("colspan","2");
 
     // Initialize Address fields
     initializeHomeAddress();
