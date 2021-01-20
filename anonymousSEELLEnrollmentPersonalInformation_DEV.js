@@ -1,4 +1,19 @@
 $(document).ready(function() {
+    // jquery css for new fields
+    // added new fields jan 19 2021
+    $("#ndph_statetextonly").parent().parent().attr("colspan","2");
+    $("#ndph_statetextonly").parent().css("width","100%");
+    $("#ndph_citytextonly").parent().parent().attr("colspan","2");
+    $("#ndph_citytextonly").parent().css("width","100%");
+    $("#ndph_statebusinesstextonly").parent().parent().attr("colspan","2");
+    $("#ndph_statebusinesstextonly").parent().css("width","100%");
+    $("#ndph_citybusinesstextonly").parent().parent().attr("colspan","2");
+    $("#ndph_citybusinesstextonly").parent().css("width","100%");
+    // end of new fields
+    $("#address1_postalcode").parent().parent().attr("colspan","2");
+    $("#address1_postalcode").parent().css("width","100%");
+    $("#ndph_mequestion14").parent().parent().attr("colspan","2");
+    $("#ndph_mequestion14").parent().css("width","100%");
 
     // Hide and show industry other
     function showAndHideIndustryOther()
