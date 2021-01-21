@@ -1,0 +1,5 @@
+{% if user | has_role: "Authenticated Users"%}
+<script>
+    window.location.replace("{{ adx_primarydomainname }}/applications/new-application");
+</script>
+{% endif %}
